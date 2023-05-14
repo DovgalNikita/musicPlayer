@@ -16,9 +16,20 @@ export default function App() {
   const [selectedMusic, setSelectedMusic] = React.useState([]);
   const [curSound, setCurSound] = React.useState(null);
   const [isCurMusicScreen, setIsCurMusicScreen] = React.useState(false);
+  const [curTrackPlayed, setCurTrackPlayed] = React.useState(null);
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [isPaused, setIsPaused] = React.useState(false);
+  const [progressBar, setProgressBar] = React.useState(null);
 
   return (
-    <MusicListContext.Provider value={{ListMusic, selectedMusic, setSelectedMusic, curSound, setCurSound, isCurMusicScreen, setIsCurMusicScreen}} >
+    <MusicListContext.Provider value={{
+        ListMusic, 
+        selectedMusic, setSelectedMusic, 
+        curSound, setCurSound, 
+        isCurMusicScreen, setIsCurMusicScreen,
+        curTrackPlayed, setCurTrackPlayed,
+        isPlaying, setIsPlaying
+      }} >
       <NavigationContainer>
           <Tab.Navigator  
               initialRouteName="Home"

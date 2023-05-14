@@ -1,0 +1,50 @@
+export const ListMusic = [
+    {
+        id:0,
+        img:require('../source/sounds/AnnaAsti_PoBaram/img.jpg'),
+        url:require('../source/sounds/AnnaAsti_PoBaram/music.mp3'),
+        nameSound:'По барам',
+        author:'Anna Asti',
+        liked:false
+    },
+    {
+        id:1,
+        img:require('../source/sounds/InstaSamka_Mommy/img.jpg'),
+        url:require('../source/sounds/InstaSamka_Mommy/music.mp3'),
+        nameSound:'InstaSamka',
+        author:'Mommy',
+        liked:false
+    },
+    {
+        id:2,
+        img:require('../source/sounds/MacanScirena_IVL/img.jpg'),
+        url:require('../source/sounds/MacanScirena_IVL/music.mp3'),
+        nameSound:'IVL',
+        author:'Macan, Scirena',
+        liked:false
+    },
+    {
+        id:3,
+        img:require('../source/images/albom1.jpg'),
+        url:require('../source/sounds/insta.mp3'),
+        nameSound:'ExampleNameMusic4',
+        author:'ExampleAuthorMusic4',
+        liked:false
+    },
+    {
+        id:4,
+        img:require('../source/images/albom2.jpg'),
+        url:require('../source/sounds/insta.mp3'),
+        nameSound:'ExampleNameMusic5',
+        author:'ExampleAuthorMusic5',
+        liked:false
+    },
+    {
+        id:5,
+        img:require('../source/images/albom3.jpg'),
+        url:require('../source/sounds/insta.mp3'),
+        nameSound:'ExampleNameMusic6',
+        author:'ExampleAuthorMusic6',
+        liked:false
+    }
+]
