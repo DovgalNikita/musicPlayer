@@ -25,18 +25,18 @@ export const ListMusic = [
     },
     {
         id:3,
-        img:require('../source/images/albom1.jpg'),
-        url:require('../source/sounds/insta.mp3'),
-        nameSound:'ExampleNameMusic4',
-        author:'ExampleAuthorMusic4',
+        img:require('../source/sounds/Jakone,Scirena_PoVesne/img.jpg'),
+        url:require('../source/sounds/Jakone,Scirena_PoVesne/music.mp3'),
+        nameSound:'По весне',
+        author:'Jakone, Scirena',
         liked:false
     },
     {
         id:4,
-        img:require('../source/images/albom2.jpg'),
-        url:require('../source/sounds/insta.mp3'),
-        nameSound:'ExampleNameMusic5',
-        author:'ExampleAuthorMusic5',
+        img:require('../source/sounds/CastleEndshpil_Control/img.jpg'),
+        url:require('../source/sounds/CastleEndshpil_Control/music.mp3'),
+        nameSound:'Control',
+        author:'Castle feat. Эндшпиль',
         liked:false
     },
     {

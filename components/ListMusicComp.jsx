@@ -34,8 +34,10 @@ const ListMusicComp = ({ListMusic, selectedMusic, setSelectedMusic, setCurSound}
     
       const LoadAudio = async () => {
         try{
-            await sound.current.loadAsync(curTrackPlayed, {}, true);
-            await PlayAudio();
+            if(curTrackPlayed!==null){
+                await sound.current.loadAsync(curTrackPlayed, {}, true);
+                PlayAudio();
+            }
         } catch (error) {
             console.log(error);
           }
@@ -55,7 +57,8 @@ const ListMusicComp = ({ListMusic, selectedMusic, setSelectedMusic, setCurSound}
                     <TouchableOpacity key={item.id} onPress={()=>{
                             setCurSound(item);
 
-                            setCurTrackPlayed(item.url);
+                            setCurTrackPlayed(item.url)
+                           
                             setIsPlaying(true);
                         }}>
                         <View style={styles.musicInstance} >
