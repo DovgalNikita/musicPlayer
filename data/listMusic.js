@@ -11,8 +11,8 @@ export const ListMusic = [
         id:1,
         img:require('../source/sounds/InstaSamka_Mommy/img.jpg'),
         url:require('../source/sounds/InstaSamka_Mommy/music.mp3'),
-        nameSound:'InstaSamka',
-        author:'Mommy',
+        nameSound:'Mommy',
+        author:'InstaSamka',
         liked:false
     },
     {
@@ -39,12 +39,5 @@ export const ListMusic = [
         author:'Castle feat. Эндшпиль',
         liked:false
     },
-    {
-        id:5,
-        img:require('../source/images/albom3.jpg'),
-        url:require('http://music.arizona-rp.com/rodina/1682460059.mp3'),
-        nameSound:'ExampleNameMusic6',
-        author:'ExampleAuthorMusic6',
-        liked:false
-    }
+    
 ]
