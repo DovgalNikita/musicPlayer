@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Dimensions  } from 'react-native';
-import { FontAwesome, Ionicons, Foundation, AntDesign } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, Foundation, AntDesign, Feather  } from '@expo/vector-icons';
+import Slider from '@react-native-community/slider';
 import React from 'react';
 import { MusicListContext } from '../App';
 
@@ -50,10 +51,8 @@ const styles = StyleSheet.create({
         top:100,
     },
     progressLine:{
-        justifyContent:'center',
         width:'100%',
-        height:2,
-        backgroundColor:'#7d7d7d'
+        height:5,
     },
     progressButton:{
         position:'absolute',
@@ -83,32 +82,67 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         width:300,
-        height:"auto",
+        height:50,
         top:520
+    },
+
+    playIcon:{
+        transform:[{scale:(1.3)}],
+        width:40,
+    },
+    pauseIcon:{
+        width:40,
     }
 })
 
 const CurMusicScreen = () => {
 
-    const {curSound, setCurSound, setIsCurMusicScreen, selectedMusic, setSelectedMusic } = React.useContext(MusicListContext);
+    const {
+        curSound, setCurSound, 
+        setIsCurMusicScreen, 
+        selectedMusic, setSelectedMusic, 
+        isPaused, setIsPaused, 
+        isRepeat, setIsRepeat, 
+        durationMusic, 
+        currentPositionMusic,setCurrentPositionMusic } = React.useContext(MusicListContext);
+
+    const [currentPositionMusicSlider, setCurrentPositionMusicSlider] = React.useState(currentPositionMusic);
+    
 
     return(
         <View style={styles.screen}>
             <TouchableOpacity style={styles.swipeButton} onPress={()=>setIsCurMusicScreen(false)}><View style={styles.swipeButtonLine}></View></TouchableOpacity>
             <Image style={styles.img} source={curSound.img}></Image>
             <View style={styles.prgressBar}>
-                <View style={styles.progressLine}>
-                    <Ionicons name="play" size={50} color="#ededed" /><FontAwesome style={styles.progressButton} name="circle" size={20} color="#904010" />
-                </View>
+                <Slider
+                    style={styles.progressLine}
+                    value={currentPositionMusicSlider}
+                    minimumValue={0}
+                    maximumValue={durationMusic}
+                    minimumTrackTintColor="#ededed"
+                    maximumTrackTintColor="#000000"
+
+                    onValueChange={(e)=>setCurrentPositionMusic(e)}
+                />
             </View>
             <View style={styles.caption}>
                     <Text style={styles.captionName}>{curSound.nameSound}</Text>
                     <Text style={styles.captionAuthor}>{curSound.author}</Text>
             </View>
             <View style={styles.manipulateButtons}>
-                <TouchableOpacity><FontAwesome name="download" size={24} color="#7d7d7d" /></TouchableOpacity>
+                {
+                    isRepeat
+                    ?<TouchableOpacity onPress={()=>setIsRepeat(false)}><Feather name="repeat" size={24} color="#ededed" /></TouchableOpacity>
+                    :<TouchableOpacity onPress={()=>setIsRepeat(true)}><Feather name="repeat" size={24} color="#7d7d7d" /></TouchableOpacity>
+                }
                 <TouchableOpacity><Foundation name="previous" size={30} color="#ededed" /></TouchableOpacity>
-                <TouchableOpacity><Ionicons name="play" size={55} color="#ededed" /></TouchableOpacity>
+                <TouchableOpacity style={styles.startSopIconContainer} onPress={()=>isPaused?setIsPaused(false):setIsPaused(true)}>
+                    {
+                        isPaused
+                        ? <FontAwesome name="pause" style={styles.pauseIcon} size={40} color="#ededed" />
+                        : <Ionicons name="play" style={styles.playIcon} size={40} color="#ededed" />
+                    }
+                </TouchableOpacity>
                 <TouchableOpacity><Foundation name="next" size={30} color="#ededed" /></TouchableOpacity>
                 {curSound.liked
                     ? <TouchableOpacity>

@@ -7,7 +7,14 @@ import {MusicListContext} from '../App';
 
 const ListMusicComp = ({ListMusic, selectedMusic, setSelectedMusic, setCurSound}) => {
     
-    const {curTrackPlayed, setCurTrackPlayed, isPlaying, setIsPlaying} = React.useContext(MusicListContext);
+    const {curTrackPlayed, setCurTrackPlayed, 
+        isPlaying, setIsPlaying,
+        isPaused, 
+        setDurationMusic, 
+        currentPositionMusic,
+        setCurrentPositionMusic
+    } = React.useContext(MusicListContext);
+
 
     const sound = React.useRef(new Audio.Sound());
 
@@ -15,20 +22,43 @@ const ListMusicComp = ({ListMusic, selectedMusic, setSelectedMusic, setCurSound}
         if(isPlaying){
             UnloadAudio(); 
             LoadAudio();
+            setIsPlaying(false);
         }else{
 
         }
     },[curTrackPlayed,isPlaying])
 
+    useEffect(()=>{
+        isPlaying
+        ? null
+        :UnloadAudio()
+    },[isPlaying])
+
+    useEffect(()=>{
+        isPaused
+        ?PauseAudio()
+        :PlayAudio()
+    },[isPaused])
+
+    useEffect(()=>{
+        SetPositionAudio();
+    },[currentPositionMusic])
+
       const PlayAudio = async () => {
         try {
-            sound.current.playAsync();
+            await sound.current.playAsync();
         } catch (error) {}
       };
     
       const PauseAudio = async () => {
         try {
-            sound.current.pauseAsync();
+            await sound.current.pauseAsync();
+        } catch (error) {}
+      };
+
+      const SetPositionAudio = async () => {
+        try {
+            await sound.current.setPositionAsync(currentPositionMusic);
         } catch (error) {}
       };
     
@@ -36,6 +66,7 @@ const ListMusicComp = ({ListMusic, selectedMusic, setSelectedMusic, setCurSound}
         try{
             if(curTrackPlayed!==null){
                 await sound.current.loadAsync(curTrackPlayed, {}, true);
+                setDurationMusic((await sound.current.getStatusAsync()).durationMillis);
                 PlayAudio();
             }
         } catch (error) {
@@ -44,7 +75,7 @@ const ListMusicComp = ({ListMusic, selectedMusic, setSelectedMusic, setCurSound}
       };
 
       const UnloadAudio = async () => {
-        sound.current.stopAsync();
+        // sound.current.stopAsync();
         await sound.current.unloadAsync();
       };
 
@@ -59,6 +90,8 @@ const ListMusicComp = ({ListMusic, selectedMusic, setSelectedMusic, setCurSound}
 
                             setCurTrackPlayed(item.url)
                            
+                            setCurrentPositionMusic(0);
+
                             setIsPlaying(true);
                         }}>
                         <View style={styles.musicInstance} >

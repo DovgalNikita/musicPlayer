@@ -19,7 +19,10 @@ export default function App() {
   const [curTrackPlayed, setCurTrackPlayed] = React.useState(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [isPaused, setIsPaused] = React.useState(false);
-  const [progressBar, setProgressBar] = React.useState(null);
+  const [isRepeat, setIsRepeat] = React.useState(false);
+
+  const [durationMusic, setDurationMusic] = React.useState(null);
+  const [currentPositionMusic, setCurrentPositionMusic] = React.useState(null);
 
   return (
     <MusicListContext.Provider value={{
@@ -28,7 +31,12 @@ export default function App() {
         curSound, setCurSound, 
         isCurMusicScreen, setIsCurMusicScreen,
         curTrackPlayed, setCurTrackPlayed,
-        isPlaying, setIsPlaying
+        isPlaying, setIsPlaying,
+        isPaused, setIsPaused,
+        isRepeat, setIsRepeat,
+        
+        durationMusic, setDurationMusic,
+        currentPositionMusic, setCurrentPositionMusic
       }} >
       <NavigationContainer>
           <Tab.Navigator  

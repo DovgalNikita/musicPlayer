@@ -42,7 +42,7 @@ export const ListMusic = [
     {
         id:5,
         img:require('../source/images/albom3.jpg'),
-        url:require('../source/sounds/insta.mp3'),
+        url:require('http://music.arizona-rp.com/rodina/1682460059.mp3'),
         nameSound:'ExampleNameMusic6',
         author:'ExampleAuthorMusic6',
         liked:false

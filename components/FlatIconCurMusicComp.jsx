@@ -43,7 +43,11 @@ const styles = StyleSheet.create({
 
 const FlatIconCurMusicComp = () => {
 
-    const {curSound, setCurSound, setIsCurMusicScreen, setIsPlaying,isPlaying } = React.useContext(MusicListContext);
+    const {curSound, setCurSound, 
+        setIsCurMusicScreen, 
+        setIsPlaying,isPlaying,
+        setCurrentPositionMusic
+    } = React.useContext(MusicListContext);
 
     return(
         <View style={styles.flatIconCurMusic}>
@@ -52,8 +56,9 @@ const FlatIconCurMusicComp = () => {
                 }}><Image style={styles.img} source={curSound.img}></Image></TouchableOpacity></View>
                 <View style={styles.basketflatIconCont}>
                     <TouchableOpacity onPress={()=>{
-                    setIsPlaying(false);
+                    setIsPlaying(null);
                     setCurSound(null);
+                    setCurrentPositionMusic(0);
                 }}>
                     <Ionicons name="trash" size={25} color="#b80000" />
                 </TouchableOpacity></View>
